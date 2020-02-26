@@ -1,0 +1,10 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: Discovery-Service
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug

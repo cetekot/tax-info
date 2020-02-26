@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Authentication-Service
+  cloud:
+    config:
+      uri: http://localhost:8761

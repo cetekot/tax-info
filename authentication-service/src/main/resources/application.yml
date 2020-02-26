@@ -1,0 +1,32 @@
+server:
+  port: 8763
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:auth;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        default_schema: auth
+        jdbc:
+          lob.non_contextual_creation: true
+  flyway:
+    baseline-on-migrate: true
+    schemas: auth
+    locations: classpath:/db/migrations
+  h2:
+    console:
+      enabled: true
+      path: /console
+eureka:
+  client:
+    fetchRegistry: true
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
