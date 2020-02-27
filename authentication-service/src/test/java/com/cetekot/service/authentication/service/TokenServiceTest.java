@@ -30,40 +30,25 @@ public class TokenServiceTest {
         service = new TokenService( repository );
     }
 
-    @Test
+    @Test( expected = TokenNotFoundException.class )
     public void testWrongTokenData() {
 
-        try {
-
-            service.findById( "some.wrong.token.id" );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( TokenNotFoundException expected ) {
-        }
+        service.findById( "some.wrong.token.id" );
+        Assert.fail( "Should have got TokenNotFoundException here." );
     }
 
-    @Test
+    @Test( expected = TokenNotFoundException.class )
     public void testMissingTokenData() {
 
-        try {
-
-            service.findById( null );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( TokenNotFoundException expected ) {
-        }
+        service.findById( null );
+        Assert.fail( "Should have got TokenNotFoundException here." );
     }
 
-    @Test
+    @Test( expected = TokenNotFoundException.class )
     public void testEmptyTokenData() {
 
-        try {
-
-            service.findById( "" );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( TokenNotFoundException expected ) {
-        }
+        service.findById( "" );
+        Assert.fail( "Should have got TokenNotFoundException here." );
     }
 
     @Test

@@ -27,63 +27,45 @@ public class UserServiceTest {
         service = new UserService( repository );
     }
 
-    @Test
-    public void testFindByWrongUserData() {
+    @Test( expected = UserNotFoundException.class )
+    public void testFindByWrongUserName() {
 
-        try {
-
-            service.findByUsername( "some.wrong.username" );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( UserNotFoundException expected ) {
-        }
-
-        try {
-
-            service.findByUsernameAndPassword( "some.wrong.username", "some.wrong.password" );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( UserNotFoundException expected ) {
-        }
+        service.findByUsername( "some.wrong.username" );
+        Assert.fail( "Should have got TokenNotFoundException here." );
     }
 
-    @Test
-    public void testFindByNullUserData() {
+    @Test( expected = UserNotFoundException.class )
+    public void testFindByWrongUserNameAndPassword() {
 
-        try {
-
-            service.findByUsername( null );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( UserNotFoundException expected ) {
-        }
-
-        try {
-
-            service.findByUsernameAndPassword( null, null );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( UserNotFoundException expected ) {
-        }
+        service.findByUsernameAndPassword( "some.wrong.username", "some.wrong.password" );
+        Assert.fail( "Should have got TokenNotFoundException here." );
     }
 
-    @Test
-    public void testFindByEmptyUserData() {
+    @Test( expected = UserNotFoundException.class )
+    public void testFindByNullUserName() {
 
-        try {
+        service.findByUsername( null );
+        Assert.fail( "Should have got TokenNotFoundException here." );
+    }
 
-            service.findByUsername( "" );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( UserNotFoundException expected ) {
-        }
+    @Test( expected = UserNotFoundException.class )
+    public void testFindByNullUserNameAndPassword() {
 
-        try {
+        service.findByUsernameAndPassword( null, null );
+        Assert.fail( "Should have got TokenNotFoundException here." );
+    }
 
-            service.findByUsernameAndPassword( "", "" );
-            Assert.fail( "Should have got TokenNotFoundException here." );
-        }
-        catch( UserNotFoundException expected ) {
-        }
+    @Test( expected = UserNotFoundException.class )
+    public void testFindByEmptyUserName() {
+
+        service.findByUsername( "" );
+        Assert.fail( "Should have got TokenNotFoundException here." );
+    }
+
+    @Test( expected = UserNotFoundException.class )
+    public void testFindByEmptyUserNameAndPassord() {
+
+        service.findByUsernameAndPassword( "", "" );
+        Assert.fail( "Should have got TokenNotFoundException here." );
     }
 }

@@ -27,39 +27,24 @@ public class ConfigServiceTest {
         service = new ConfigService( repository );
     }
 
-    @Test
+    @Test( expected = ConfigNotFoundException.class )
     public void testWrongConfigData() {
 
-        try {
-
-            service.findById( "some.wrong.key" );
-            Assert.fail("Should have got ConfigNotFoundException here.");
-        }
-        catch( ConfigNotFoundException expected ) {
-        }
+        service.findById( "some.wrong.key" );
+        Assert.fail( "Should have got ConfigNotFoundException here." );
     }
 
-    @Test
+    @Test( expected = ConfigNotFoundException.class )
     public void testMissingConfigData() {
 
-        try {
-
-            service.findById( null );
-            Assert.fail("Should have got ConfigNotFoundException here.");
-        }
-        catch( ConfigNotFoundException expected ) {
-        }
+        service.findById( null );
+        Assert.fail( "Should have got ConfigNotFoundException here." );
     }
 
-    @Test
+    @Test( expected = ConfigNotFoundException.class )
     public void testEmptyConfigData() {
 
-        try {
-
-            service.findById( "" );
-            Assert.fail("Should have got ConfigNotFoundException here.");
-        }
-        catch( ConfigNotFoundException expected ) {
-        }
+        service.findById( "" );
+        Assert.fail( "Should have got ConfigNotFoundException here." );
     }
 }
