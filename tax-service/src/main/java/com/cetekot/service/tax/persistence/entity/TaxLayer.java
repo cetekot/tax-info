@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -31,13 +32,13 @@ public class TaxLayer {
     private TaxType type;
 
     @Column( name = "percent" )
-    private Double percent;
+    private BigDecimal percent;
 
     @Column( name = "min_amount" )
-    private Double minAmount;
+    private BigDecimal minAmount;
 
     @Column( name = "max_amount" )
-    private Double maxAmount;
+    private BigDecimal maxAmount;
 
     @Column( name = "valid_from" )
     private Date validFrom;

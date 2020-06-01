@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -37,5 +38,5 @@ public class TaxData {
     private Date payedAt;
 
     @Column( name = "amount", nullable = false )
-    private Double amount;
+    private BigDecimal amount;
 }

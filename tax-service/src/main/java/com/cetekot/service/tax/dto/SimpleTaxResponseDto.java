@@ -2,6 +2,8 @@ package com.cetekot.service.tax.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 /**
  * Copyright:    Copyright (c) 2019
  * Company:      Crazy coding inc.
@@ -15,5 +17,5 @@ import lombok.*;
 public class SimpleTaxResponseDto {
 
     private String taxpayerId;
-    private Double taxPayable;
+    private BigDecimal taxPayable;
 }

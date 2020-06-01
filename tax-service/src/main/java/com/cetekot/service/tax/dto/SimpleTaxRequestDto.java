@@ -2,6 +2,7 @@ package com.cetekot.service.tax.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Date;
 public class SimpleTaxRequestDto {
 
     private String taxpayerId;
-    private Double income;
+    private BigDecimal income;
     private Date receivedAt;
     private boolean isChecking;
 }
