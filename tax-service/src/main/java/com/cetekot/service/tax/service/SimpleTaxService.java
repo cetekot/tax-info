@@ -47,8 +47,8 @@ public class SimpleTaxService {
         List<IncomeData> allIncome = incomeDataRepository.findAllForSpecifiedYear( dateRequested.getYear() );
         List<TaxData> allTaxPaid = dataRepository.findAllByTaxpayerId( dto.getTaxpayerId() );
 
-        BigDecimal incomeReceived = allIncome.stream().map( IncomeData::getAmount ).reduce( BigDecimal::add ).get();
-        BigDecimal taxSum = allTaxPaid.stream().map( TaxData::getAmount ).reduce( BigDecimal::add ).get();
+        BigDecimal incomeReceived = allIncome.size() > 0 ? allIncome.stream().map( IncomeData::getAmount ).reduce( BigDecimal::add ).get() : BigDecimal.ZERO;
+        BigDecimal taxSum = allTaxPaid.size() > 0 ? allTaxPaid.stream().map( TaxData::getAmount ).reduce( BigDecimal::add ).get() : BigDecimal.ZERO;
         BigDecimal newTax = calculateTax( incomeReceived.add( dto.getIncome() ), activeLayers );
 
         return new SimpleTaxResponseDto( dto.getTaxpayerId(), newTax.add( taxSum.negate() ) );
