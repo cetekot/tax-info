@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Copyright:    Copyright (c) 2020
@@ -31,7 +31,7 @@ public class IncomeData {
     private String taxpayerId;
 
     @Column( name = "received_at", nullable = false )
-    private Date receivedAt;
+    private LocalDateTime receivedAt;
 
     @Column( name = "amount", nullable = false )
     private BigDecimal amount;

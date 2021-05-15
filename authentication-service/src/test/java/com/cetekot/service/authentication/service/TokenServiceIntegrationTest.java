@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Copyright:    Copyright (c) 2019
@@ -41,14 +41,14 @@ public class TokenServiceIntegrationTest {
     public void testCrud() {
 
         Assert.assertEquals( 0, service.list().size() );
-        Token token = new Token( "Test.Token.1", new Date() );
+        Token token = new Token( "Test.Token.1", LocalDateTime.now() );
         service.save( token );
         Assert.assertEquals( 1, service.list().size() );
 
         Token dbToken = service.findById( token.getToken() );
         Assert.assertEquals( token.getValidTo(), dbToken.getValidTo() );
 
-        Token anotherToken = new Token( "Test.Token.2", new Date() );
+        Token anotherToken = new Token( "Test.Token.2", LocalDateTime.now() );
         service.save( anotherToken );
         Assert.assertEquals( 2, service.list().size() );
 

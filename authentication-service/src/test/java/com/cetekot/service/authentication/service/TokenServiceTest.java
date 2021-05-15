@@ -7,7 +7,7 @@ import org.junit.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 /**
  * Copyright:    Copyright (c) 2020
@@ -54,13 +54,10 @@ public class TokenServiceTest {
     @Test
     public void testTokenValidity() {
 
-        Calendar c = Calendar.getInstance();
-        c.add( Calendar.YEAR, -1 );
-        Token token = new Token( "Test.Token", c.getTime() );
+        Token token = new Token( "Test.Token", LocalDateTime.now().minusYears( 1 ) );
         Assert.assertFalse( service.isValid( token ) );
 
-        c.add( Calendar.YEAR, 3 );
-        token = new Token( "Test.Token", c.getTime() );
+        token = new Token( "Test.Token", LocalDateTime.now().plusYears( 3 ) );
         Assert.assertTrue( service.isValid( token ) );
     }
 }

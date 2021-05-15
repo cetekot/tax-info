@@ -15,8 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,8 +54,8 @@ class SimpleTaxServiceTest {
     public void setUp() {
 
         // Current income for year 2020: 1510
-        incomeDataRepository.save( new IncomeData( null, TAXPAYER_ID, java.sql.Date.valueOf( LocalDate.of( 2020, 1, 22 ) ), new BigDecimal( 826 ) ) );
-        incomeDataRepository.save( new IncomeData( null, TAXPAYER_ID, java.sql.Date.valueOf( LocalDate.of( 2020, 2, 10 ) ), new BigDecimal( 684 ) ) );
+        incomeDataRepository.save( new IncomeData( null, TAXPAYER_ID, LocalDateTime.of( 2020, 1, 22, 12, 34 ), new BigDecimal( 826 ) ) );
+        incomeDataRepository.save( new IncomeData( null, TAXPAYER_ID, LocalDateTime.of( 2020, 2, 10, 13, 48 ), new BigDecimal( 684 ) ) );
 
         // Tax layers:
         // 0-600: 10%
@@ -67,28 +66,23 @@ class SimpleTaxServiceTest {
         taxTypeRepository.save( type );
 
         // Total paid already for year 2020: 167.85
-        taxDataRepository.save( new TaxData( null, TAXPAYER_ID, type, java.sql.Date.valueOf( LocalDate.of( 2020, 1, 22 ) ), new BigDecimal( "67.85" ) ) );
-        taxDataRepository.save( new TaxData( null, TAXPAYER_ID, type, java.sql.Date.valueOf( LocalDate.of( 2020, 2, 22 ) ), new BigDecimal( 100 ) ) );
+        taxDataRepository.save( new TaxData( null, TAXPAYER_ID, type, LocalDateTime.of( 2020, 1, 22, 11, 21 ), new BigDecimal( "67.85" ) ) );
+        taxDataRepository.save( new TaxData( null, TAXPAYER_ID, type, LocalDateTime.of( 2020, 2, 22, 12, 22 ), new BigDecimal( 100 ) ) );
 
-        final Calendar validFrom = Calendar.getInstance();
-        validFrom.set( 2020, 1, 1 );
-        final Calendar validTo = Calendar.getInstance();
-        validTo.set( 2020, 12, 31 );
+        final LocalDateTime validFrom = LocalDateTime.now().minusYears( 1 );
+        final LocalDateTime validTo = LocalDateTime.now().plusYears( 1 );
 
-        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 10 ), BigDecimal.ZERO, new BigDecimal( 600 ), validFrom.getTime(), validTo.getTime() ) );
-        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 15 ), new BigDecimal( "600.01" ), new BigDecimal( 1200 ), validFrom.getTime(), validTo.getTime() ) );
-        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 20 ), new BigDecimal( "1200.01" ), new BigDecimal( 1600 ), validFrom.getTime(), validTo.getTime() ) );
-        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 30 ), new BigDecimal( "1600.01" ), BigDecimal.valueOf( Integer.MAX_VALUE ), validFrom.getTime(), validTo.getTime() ) );
+        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 10 ), BigDecimal.ZERO, new BigDecimal( 600 ), validFrom, validTo ) );
+        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 15 ), new BigDecimal( "600.01" ), new BigDecimal( 1200 ), validFrom, validTo ) );
+        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 20 ), new BigDecimal( "1200.01" ), new BigDecimal( 1600 ), validFrom, validTo ) );
+        taxLayerRepository.save( new TaxLayer( null, type, new BigDecimal( 30 ), new BigDecimal( "1600.01" ), BigDecimal.valueOf( Integer.MAX_VALUE ), validFrom, validTo ) );
     }
 
     @Test
     void calculate() {
 
         final double amountReceived = 935.34d;
-        final Calendar c = Calendar.getInstance();
-        c.set( 2020, 3, 18 );
-
-        SimpleTaxRequestDto dto = new SimpleTaxRequestDto( TAXPAYER_ID, new BigDecimal( amountReceived ), c.getTime(), true );
+        SimpleTaxRequestDto dto = new SimpleTaxRequestDto( TAXPAYER_ID, new BigDecimal( amountReceived ), LocalDateTime.of( 2020, 3, 18, 10, 10 ), true );
         SimpleTaxResponseDto result = service.calculate( dto );
 
         assertEquals( TAXPAYER_ID, result.getTaxpayerId() );

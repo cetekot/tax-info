@@ -9,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
@@ -47,7 +45,7 @@ public class AuthController {
             LocalDateTime validTo = LocalDateTime.now();
             int interval = Integer.parseInt( configService.findById( Config.TOKEN_INTERVAL ).getValue() );
             validTo = validTo.plus( interval, ChronoUnit.SECONDS );
-            tokenService.save( new Token( token, Date.from( validTo.atZone( ZoneId.systemDefault() ).toInstant() ) ) );
+            tokenService.save( new Token( token, LocalDateTime.now().plus( interval, ChronoUnit.SECONDS ) ) );
             return ResponseEntity.ok( token );
         }
 

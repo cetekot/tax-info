@@ -6,7 +6,9 @@ import com.cetekot.service.authentication.persistence.repository.TokenRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Copyright:    Copyright (c) 2019
@@ -57,6 +59,6 @@ public class TokenService {
 
     public boolean isValid( Token token ) {
 
-        return token.getValidTo().after( new Date() );
+        return token.getValidTo().isAfter( LocalDateTime.now() );
     }
 }

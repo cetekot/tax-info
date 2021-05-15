@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -43,8 +41,7 @@ public class SimpleTaxService {
             throw new NoActiveTaxLayersException();
         }
 
-        LocalDate dateRequested = dto.getReceivedAt().toInstant().atZone( ZoneId.systemDefault() ).toLocalDate();
-        List<IncomeData> allIncome = incomeDataRepository.findAllForSpecifiedYear( dateRequested.getYear() );
+        List<IncomeData> allIncome = incomeDataRepository.findAllForSpecifiedYear( dto.getReceivedAt().getYear() );
         List<TaxData> allTaxPaid = dataRepository.findAllByTaxpayerId( dto.getTaxpayerId() );
 
         BigDecimal incomeReceived = allIncome.size() > 0 ? allIncome.stream().map( IncomeData::getAmount ).reduce( BigDecimal::add ).get() : BigDecimal.ZERO;

@@ -3,7 +3,7 @@ package com.cetekot.service.tax.dto;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Copyright:    Copyright (c) 2019
@@ -19,6 +19,6 @@ public class SimpleTaxRequestDto {
 
     private String taxpayerId;
     private BigDecimal income;
-    private Date receivedAt;
+    private LocalDateTime receivedAt;
     private boolean isChecking;
 }

@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Copyright:    Copyright (c) 2020
@@ -41,8 +41,8 @@ public class TaxLayer {
     private BigDecimal maxAmount;
 
     @Column( name = "valid_from" )
-    private Date validFrom;
+    private LocalDateTime validFrom;
 
     @Column( name = "valid_to" )
-    private Date validTo;
+    private LocalDateTime validTo;
 }

@@ -3,7 +3,7 @@ package com.cetekot.service.authentication.persistence.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Copyright:    Copyright (c) 2019
@@ -24,5 +24,5 @@ public class Token {
     private String token;
 
     @Column( name = "valid_to", nullable = false )
-    private Date validTo;
+    private LocalDateTime validTo;
 }
