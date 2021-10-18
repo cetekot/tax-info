@@ -3,8 +3,12 @@ package com.cetekot.service.tax.service;
 import com.cetekot.service.tax.dto.SimpleTaxRequestDto;
 import com.cetekot.service.tax.dto.SimpleTaxResponseDto;
 import com.cetekot.service.tax.exception.NoActiveTaxLayersException;
-import com.cetekot.service.tax.persistence.entity.*;
-import com.cetekot.service.tax.persistence.repository.*;
+import com.cetekot.service.tax.persistence.entity.IncomeData;
+import com.cetekot.service.tax.persistence.entity.TaxData;
+import com.cetekot.service.tax.persistence.entity.TaxLayer;
+import com.cetekot.service.tax.persistence.repository.IncomeDataRepository;
+import com.cetekot.service.tax.persistence.repository.TaxDataRepository;
+import com.cetekot.service.tax.persistence.repository.TaxLayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +16,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
@@ -21,9 +24,9 @@ import java.util.List;
 @Service
 public class SimpleTaxService {
 
-    private IncomeDataRepository incomeDataRepository;
-    private TaxLayerRepository layerRepository;
-    private TaxDataRepository dataRepository;
+    private final IncomeDataRepository incomeDataRepository;
+    private final TaxLayerRepository layerRepository;
+    private final TaxDataRepository dataRepository;
 
     @Autowired
     public SimpleTaxService( IncomeDataRepository incomeDataRepository, TaxLayerRepository layerRepository, TaxDataRepository dataRepository ) {

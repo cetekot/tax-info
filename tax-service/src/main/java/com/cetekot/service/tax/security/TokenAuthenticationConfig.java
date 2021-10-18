@@ -11,13 +11,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.web.cors.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
@@ -28,8 +32,8 @@ import java.util.*;
 @Order( 1 )
 public class TokenAuthenticationConfig extends WebSecurityConfigurerAdapter {
 
-    private Environment env;
-    private TokenAuthenticationFilter filter;
+    private final Environment env;
+    private final TokenAuthenticationFilter filter;
 
     @Autowired
     public TokenAuthenticationConfig( Environment env, TokenAuthenticationFilter filter ) {

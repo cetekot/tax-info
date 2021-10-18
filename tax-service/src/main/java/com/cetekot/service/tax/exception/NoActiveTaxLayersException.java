@@ -1,8 +1,7 @@
 package com.cetekot.service.tax.exception;
 
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

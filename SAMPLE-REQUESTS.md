@@ -14,7 +14,7 @@ in `resources/db/migrations`.
 
 ### Checking if token is valid
 
-To check token validity call the following url `AUTHENTICATION_SERVICE_URL/api/v1/auth/<YOUR_TOKEN_HERE>`.
+To check token validity send GET request to the following url `AUTHENTICATION_SERVICE_URL/api/v1/auth/<YOUR_TOKEN_HERE>`.
 
 Tokens will be valid for 10 minutes, though value can be changed in `V1.2__Init_data.sql` script in `resources/db/migrations`
 or directly in `AUTHENTICATION_SERVICE_URL` database.
@@ -29,6 +29,7 @@ Sent the following JSON via POST to `<TAX_SERVICE_URL>/api/v1/tax/simple`
     "isChecking": "true"
 }
 ```
+Request should have header called `AuthToken` with token value from authorization.
 
 You should receive something like:
 ```json

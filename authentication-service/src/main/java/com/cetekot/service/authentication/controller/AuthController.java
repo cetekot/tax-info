@@ -3,7 +3,9 @@ package com.cetekot.service.authentication.controller;
 import com.cetekot.service.authentication.dto.LoginDto;
 import com.cetekot.service.authentication.persistence.entity.Config;
 import com.cetekot.service.authentication.persistence.entity.Token;
-import com.cetekot.service.authentication.service.*;
+import com.cetekot.service.authentication.service.ConfigService;
+import com.cetekot.service.authentication.service.TokenService;
+import com.cetekot.service.authentication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

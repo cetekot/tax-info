@@ -1,11 +1,12 @@
 package com.cetekot.service.auth;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

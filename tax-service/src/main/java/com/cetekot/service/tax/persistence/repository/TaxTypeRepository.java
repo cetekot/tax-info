@@ -4,8 +4,7 @@ import com.cetekot.service.tax.persistence.entity.TaxType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

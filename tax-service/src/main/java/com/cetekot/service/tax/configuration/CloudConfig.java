@@ -4,8 +4,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

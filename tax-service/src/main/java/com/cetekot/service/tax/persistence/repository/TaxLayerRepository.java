@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
@@ -22,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
-    private AuthenticationClient authenticationClient;
+    private final AuthenticationClient authenticationClient;
 
     @Autowired
     public TokenAuthenticationFilter( AuthenticationClient authenticationClient ) {

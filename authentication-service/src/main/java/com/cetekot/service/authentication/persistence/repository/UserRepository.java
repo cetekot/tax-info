@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

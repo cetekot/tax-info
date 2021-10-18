@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

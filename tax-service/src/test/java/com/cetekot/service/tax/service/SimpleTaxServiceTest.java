@@ -2,32 +2,33 @@ package com.cetekot.service.tax.service;
 
 import com.cetekot.service.tax.dto.SimpleTaxRequestDto;
 import com.cetekot.service.tax.dto.SimpleTaxResponseDto;
-import com.cetekot.service.tax.persistence.entity.*;
-import com.cetekot.service.tax.persistence.repository.*;
+import com.cetekot.service.tax.persistence.entity.IncomeData;
+import com.cetekot.service.tax.persistence.entity.TaxData;
+import com.cetekot.service.tax.persistence.entity.TaxLayer;
+import com.cetekot.service.tax.persistence.entity.TaxType;
+import com.cetekot.service.tax.persistence.repository.IncomeDataRepository;
+import com.cetekot.service.tax.persistence.repository.TaxDataRepository;
+import com.cetekot.service.tax.persistence.repository.TaxLayerRepository;
+import com.cetekot.service.tax.persistence.repository.TaxTypeRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
  */
-@RunWith( SpringJUnit4ClassRunner.class )
 @SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 @AutoConfigureMockMvc
 @TestPropertySource( locations = "classpath:application.properties" )
@@ -85,7 +86,7 @@ class SimpleTaxServiceTest {
         SimpleTaxRequestDto dto = new SimpleTaxRequestDto( TAXPAYER_ID, new BigDecimal( amountReceived ), LocalDateTime.of( 2020, 3, 18, 10, 10 ), true );
         SimpleTaxResponseDto result = service.calculate( dto );
 
-        assertEquals( TAXPAYER_ID, result.getTaxpayerId() );
-        assertEquals( new BigDecimal( "315.749" ), result.getTaxPayable().setScale( 3, RoundingMode.HALF_EVEN ) );
+        Assertions.assertEquals( TAXPAYER_ID, result.getTaxpayerId() );
+        Assertions.assertEquals( new BigDecimal( "315.749" ), result.getTaxPayable().setScale( 3, RoundingMode.HALF_EVEN ) );
     }
 }

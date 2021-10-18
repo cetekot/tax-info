@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
@@ -20,7 +19,7 @@ import java.util.Optional;
 @Service
 public class TokenService {
 
-    private TokenRepository repository;
+    private final TokenRepository repository;
 
     @Autowired
     public TokenService( TokenRepository repository ) {

@@ -3,8 +3,7 @@ package com.cetekot.service.tax.calculation;
 import java.text.MessageFormat;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

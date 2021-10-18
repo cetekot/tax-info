@@ -2,13 +2,14 @@ package com.cetekot.service.authentication.service;
 
 import com.cetekot.service.authentication.exception.UserNotFoundException;
 import com.cetekot.service.authentication.persistence.repository.UserRepository;
-import org.junit.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 /**
- * Copyright:    Copyright (c) 2020
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2020-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
@@ -20,52 +21,46 @@ public class UserServiceTest {
 
     private UserService service;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
-        MockitoAnnotations.initMocks( this );
+        MockitoAnnotations.openMocks( this );
         service = new UserService( repository );
     }
 
-    @Test( expected = UserNotFoundException.class )
+    @Test
     public void testFindByWrongUserName() {
 
-        service.findByUsername( "some.wrong.username" );
-        Assert.fail( "Should have got TokenNotFoundException here." );
+        Assertions.assertThrows( UserNotFoundException.class, () -> service.findByUsername( "some.wrong.username" ), "Should have got TokenNotFoundException here." );
     }
 
-    @Test( expected = UserNotFoundException.class )
+    @Test
     public void testFindByWrongUserNameAndPassword() {
 
-        service.findByUsernameAndPassword( "some.wrong.username", "some.wrong.password" );
-        Assert.fail( "Should have got TokenNotFoundException here." );
+        Assertions.assertThrows( UserNotFoundException.class, () -> service.findByUsernameAndPassword( "some.wrong.username", "some.wrong.password" ), "Should have got TokenNotFoundException here." );
     }
 
-    @Test( expected = UserNotFoundException.class )
+    @Test
     public void testFindByNullUserName() {
 
-        service.findByUsername( null );
-        Assert.fail( "Should have got TokenNotFoundException here." );
+        Assertions.assertThrows( UserNotFoundException.class, () -> service.findByUsername( null ), "Should have got TokenNotFoundException here." );
     }
 
-    @Test( expected = UserNotFoundException.class )
+    @Test
     public void testFindByNullUserNameAndPassword() {
 
-        service.findByUsernameAndPassword( null, null );
-        Assert.fail( "Should have got TokenNotFoundException here." );
+        Assertions.assertThrows( UserNotFoundException.class, () -> service.findByUsernameAndPassword( null, null ), "Should have got TokenNotFoundException here." );
     }
 
-    @Test( expected = UserNotFoundException.class )
+    @Test
     public void testFindByEmptyUserName() {
 
-        service.findByUsername( "" );
-        Assert.fail( "Should have got TokenNotFoundException here." );
+        Assertions.assertThrows( UserNotFoundException.class, () -> service.findByUsername( "" ), "Should have got TokenNotFoundException here." );
     }
 
-    @Test( expected = UserNotFoundException.class )
+    @Test
     public void testFindByEmptyUserNameAndPassord() {
 
-        service.findByUsernameAndPassword( "", "" );
-        Assert.fail( "Should have got TokenNotFoundException here." );
+        Assertions.assertThrows( UserNotFoundException.class, () -> service.findByUsernameAndPassword( "", "" ), "Should have got TokenNotFoundException here." );
     }
 }

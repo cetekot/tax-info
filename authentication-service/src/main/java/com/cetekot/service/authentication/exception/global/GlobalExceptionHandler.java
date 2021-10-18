@@ -1,16 +1,19 @@
 package com.cetekot.service.authentication.exception.global;
 
 import com.cetekot.service.authentication.dto.RestErrorDto;
-import com.cetekot.service.authentication.exception.*;
+import com.cetekot.service.authentication.exception.ConfigNotFoundException;
+import com.cetekot.service.authentication.exception.TokenNotFoundException;
+import com.cetekot.service.authentication.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.text.MessageFormat;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0

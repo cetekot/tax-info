@@ -2,24 +2,23 @@ package com.cetekot.service.authentication.service;
 
 import com.cetekot.service.authentication.TestCleanup;
 import com.cetekot.service.authentication.persistence.entity.Token;
-import org.junit.*;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
- * Copyright:    Copyright (c) 2019
- * Company:      Crazy coding inc.
+ * Copyright:    Copyright (c) 2019-2021
  *
  * @author Andrei 'cetekot' Larin
  * @version 1.0
  */
-@RunWith( SpringJUnit4ClassRunner.class )
 @SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 @AutoConfigureMockMvc
 @TestPropertySource( locations = "classpath:application.properties" )
@@ -31,7 +30,7 @@ public class TokenServiceIntegrationTest {
     @Autowired
     private TestCleanup testCleanup;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         testCleanup.performCleanup();
@@ -40,25 +39,25 @@ public class TokenServiceIntegrationTest {
     @Test
     public void testCrud() {
 
-        Assert.assertEquals( 0, service.list().size() );
+        Assertions.assertEquals( 0, service.list().size() );
         Token token = new Token( "Test.Token.1", LocalDateTime.now() );
         service.save( token );
-        Assert.assertEquals( 1, service.list().size() );
+        Assertions.assertEquals( 1, service.list().size() );
 
         Token dbToken = service.findById( token.getToken() );
-        Assert.assertEquals( token.getValidTo(), dbToken.getValidTo() );
+        Assertions.assertEquals( token.getValidTo().truncatedTo( ChronoUnit.SECONDS ), dbToken.getValidTo().truncatedTo( ChronoUnit.SECONDS ) );
 
         Token anotherToken = new Token( "Test.Token.2", LocalDateTime.now() );
         service.save( anotherToken );
-        Assert.assertEquals( 2, service.list().size() );
+        Assertions.assertEquals( 2, service.list().size() );
 
         dbToken = service.findById( anotherToken.getToken() );
-        Assert.assertEquals( anotherToken.getValidTo(), dbToken.getValidTo() );
+        Assertions.assertEquals( anotherToken.getValidTo().truncatedTo( ChronoUnit.SECONDS ), dbToken.getValidTo().truncatedTo( ChronoUnit.SECONDS ) );
 
         service.delete( token );
-        Assert.assertEquals( 1, service.list().size() );
+        Assertions.assertEquals( 1, service.list().size() );
 
         service.delete( anotherToken );
-        Assert.assertEquals( 0, service.list().size() );
+        Assertions.assertEquals( 0, service.list().size() );
     }
 }
