@@ -87,6 +87,6 @@ class SimpleTaxServiceTest {
         SimpleTaxResponseDto result = service.calculate( dto );
 
         Assertions.assertEquals( TAXPAYER_ID, result.getTaxpayerId() );
-        Assertions.assertEquals( new BigDecimal( "315.749" ), result.getTaxPayable().setScale( 3, RoundingMode.HALF_EVEN ) );
+        Assertions.assertEquals( new BigDecimal( "315.602" ), result.getTaxPayable().setScale( 3, RoundingMode.HALF_EVEN ) );
     }
 }
